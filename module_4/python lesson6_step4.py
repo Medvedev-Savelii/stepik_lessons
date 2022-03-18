@@ -2,17 +2,24 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 import time
 
+
+link = "http://suninjuly.github.io/find_xpath_form"
+
 try:
     browser = webdriver.Chrome()
-    browser.get("http://suninjuly.github.io/huge_form.html")
-    elements = browser.find_elements_by_css_selector("[type=text")
-    for element in elements:
-        element.send_keys("Мой ответ")
+    browser.get(link)
 
-    button = browser.find_element(by=By.CSS_SELECTOR, value='[type=submit]')
+    input1 = browser.find_element(by=By.TAG_NAME, value='input')
+    input1.send_keys("Saveliy")
+    input2 = browser.find_element(by=By.NAME, value='last_name')
+    input2.send_keys("Medvedev")
+    input3 = browser.find_element(by=By.CLASS_NAME, value='city')
+    input3.send_keys("Irkutsk")
+    input4 = browser.find_element(by=By.ID, value='country')
+    input4.send_keys("Russia")
+    button = browser.find_element(by=By.XPATH, value="/html/body/div[1]/form/div[6]/button[3]")
     button.click()
 
 finally:
     time.sleep(30)
     browser.quit()
-
